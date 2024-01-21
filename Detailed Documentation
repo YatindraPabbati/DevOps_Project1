@@ -1,0 +1,91 @@
+###############################################################
+# Date: 17 - 01 - 2024
+#
+# Version: V1
+#
+# AWS Resource Tracking Script
+#
+# This script reports AWS resource usage for selected services.
+###############################################################
+
+
+ Overview:
+
+The AWS Resource Tracking Script is a shell script designed to provide insights into the usage of AWS resources. It gathers information on AWS S3 buckets, EC2 instances, Lambda functions, and IAM users. This script utilizes the AWS CLI and jq for querying and formatting the AWS resource data.
+
+
+ Features:
+
+- Tracks AWS S3 buckets, EC2 instances, Lambda functions, and IAM users.
+- Generates a list of resources for each service.
+- Outputs the results to the console and a file named "resourceTracker".
+
+
+ Prerequisites:
+
+- AWS CLI installed and configured with necessary credentials.
+- jq (JSON processor) installed on the system.
+
+
+ Usage:
+
+1. Run the Script:
+   Execute the script using the following command:
+
+   `sh aws_resource_tracker.sh` (or) `./aws_resource_tracker.sh`
+   
+2. Output:
+   The script will generate a list of resources for each service and display it on the console. Additionally, the results will be saved in a file named "resourceTracker".
+
+
+Resources Tracked:
+
+ 1. AWS S3 Buckets:
+
+The script uses the following command to list S3 buckets:
+
+`aws s3 ls`
+
+
+The list of S3 buckets is then printed to the console and saved in the "resourceTracker" file.
+
+ 2. AWS EC2 Instances:
+
+The script uses the following command to describe EC2 instances:
+
+`aws ec2 describe-instances | jq '.Reservations[].Instances[].InstanceId'`
+
+
+The list of EC2 instances is then printed to the console and saved in the "resourceTracker" file.
+
+ 3. AWS Lambda Functions:
+
+The script uses the following command to list Lambda functions:
+
+`aws lambda list-functions`
+
+
+The list of Lambda functions is then printed to the console and appended to the "resourceTracker" file.
+
+ 4. AWS IAM Users:
+
+The script uses the following command to list IAM users:
+
+`aws iam list-users`
+
+
+The list of IAM users is then printed to the console and appended to the "resourceTracker" file.
+
+
+Additional Notes:
+
+- The script version is V1, created on 17 - 01 - 2024.
+- The "resourceTracker" file serves as a log for tracking resource changes over time.
+- The script employs the 'set +x' command to disable debugging output.
+- The project owner has used wsl (ubuntu) in Windows to execute the project.
+- The project has been performed with the help of aws ec2 instance for execution.
+
+Conclusion
+To sum it up, our AWS Resource Tracking Script does what we wanted it to do. It helps us quickly get details about our AWS stuff and shows it on the screen in an easy-to-read way. It also writes this information down in a file called "resourceTracker" so we can keep a record of changes over time.
+
+This script is handy because it makes it simpler for us to understand how we're using AWS resources. It's like a helpful tool for people in charge, letting them see what's going on with our AWS things. The script is set up in a way that we can easily add more features or change things if we need to in the future. It's all about making AWS resource tracking straightforward and practical for everyone involved.
